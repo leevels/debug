@@ -18,12 +18,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Leevel\Debug\Facade;
+namespace Leevel\Debug\Proxy;
 
 use Leevel\Di\Container;
 
 /**
- * 门面 debug.
+ * 代理 debug.
  *
  * @author Xiangmin Liu <635750556@qq.com>
  *
