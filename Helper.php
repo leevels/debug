@@ -18,23 +18,40 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Leevel\Debug\Helper;
+namespace Leevel\Debug;
 
-use Leevel\Debug\Dump;
+use function Leevel\Support\Str\un_camelize;
+use Leevel\Support\Str\un_camelize;
 
 /**
- * 调试 RoadRunner 变量.
+ * 助手类.
  *
- * @param mixed $var
- * @param array ...$moreVars
+ * @author Xiangmin Liu <635750556@qq.com>
  *
- * @return mixed
+ * @since 2019.08.21
+ *
+ * @version 1.0
  */
-function drr($var, ...$moreVars)
+class Helper
 {
-    return Dump::dumpRoadRunner($var, ...$moreVars);
+    /**
+     * call.
+     *
+     * @param string $method
+     * @param array  $args
+     *
+     * @return mixed
+     */
+    public static function __callStatic(string $method, array $args)
+    {
+        $fn = __NAMESPACE__.'\\Helper\\'.un_camelize($method);
+        if (!function_exists($fn)) {
+            class_exists($fn);
+        }
+
+        return $fn(...$args);
+    }
 }
 
-class drr
-{
-}
+// import fn.
+class_exists(un_camelize::class);
