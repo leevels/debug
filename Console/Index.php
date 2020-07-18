@@ -20,6 +20,6 @@ declare(strict_types=1);
 
 namespace Leevel\Debug\Console;
 
-class _Index
+class Index
 {
 }
