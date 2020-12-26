@@ -10,7 +10,7 @@ use Leevel\Filesystem\Helper\link;
 use Leevel\Kernel\IApp;
 
 /**
- * debuger 资源目录创建软连接到 www.
+ * 调试资源目录创建软连接.
  */
 class LinkDebugBar extends Command
 {
@@ -22,7 +22,7 @@ class LinkDebugBar extends Command
     /**
      * 命令行描述.
     */
-    protected string $description = 'Create a symbolic link from `vendor/maximebf/debugbar/src/DebugBar/Resources` to `www/debugbar` and `debugbar`,`debugbar` just for Swoole';
+    protected string $description = 'Create a symbolic link from `vendor/maximebf/debugbar/src/DebugBar/Resources` to `www/debugbar` and `debugbar`';
 
     /**
      * 响应命令.
@@ -41,12 +41,6 @@ class LinkDebugBar extends Command
      */
     protected function createLink(string $source, string $target): void
     {
-        if (file_exists($target)) {
-            $this->error(sprintf('The `%s` directory already exists.', $target));
-
-            return;
-        }
-
         link($source, $target);
         $this->info(sprintf('Linked `%s` directory to `%s` successed.', $source, $target));
     }
